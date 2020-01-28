@@ -1,0 +1,112 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+#include "List.h"
+
+List::List() : head(0) { }
+
+List::~List()
+{
+  Node* currNode = head;
+  Node* nextNode;
+
+  while (currNode != 0) {
+    nextNode = currNode->next;
+    delete currNode->next;
+    delete currNode;
+    currNode = nextNode;
+  }
+ }
+
+int List::getSize(){   return size;}
+
+Course* List::getCourse(int index){
+
+  Node* currNode= head;
+  int i=0;
+
+  while(currNode != 0){
+   if (index==i)
+      return currNode->course;
+   i++;
+   currNode=currNode->next;
+  }
+
+}
+Course* List::findCourse(string course){
+
+  Node* currNode = head;
+  Node* prevNode = 0;
+
+    while (currNode != 0) {
+      if(currNode->course->getName() == course)
+        return currNode->course;
+
+	prevNode=currNode;
+	currNode=currNode->next;
+       
+     }
+      if(currNode==0)
+	return 0;
+
+       //return currNode->course;
+}
+
+void List::removeCourse(Course* course){
+
+  Node* currNode = head;
+  Node* prevNode = 0;
+
+    while (currNode != 0) {
+      if(currNode->course->getName() == course->getName())
+	  break;
+	prevNode=currNode;
+	currNode=currNode->next;
+       
+     }
+
+    if(currNode==0){
+    return;
+      }
+     if(prevNode==0){
+        head=currNode->next;
+      }else{
+	prevNode=currNode->next;
+
+	delete currNode;
+    }
+}
+
+void List::add(Course* course)
+{
+  Node* currNode = head;
+  Node* prevNode = 0;
+  Node* newCourseNode = new Node;
+  newCourseNode->course = course;
+  newCourseNode->next = 0;
+
+//Getting to the second last node
+  while (currNode != 0) {
+
+   if(currNode->course->getName()> prevNode->course->getName() && currNode->course->getName() <currNode->next->course->getName())
+	break;
+
+    prevNode = currNode;
+    currNode = currNode->next;
+  }
+//Appending at the end of the list
+  if (prevNode == 0) {
+    head = newCourseNode;
+  }
+  else {
+    prevNode->next = newCourseNode;
+  }
+    newCourseNode->next = currNode;
+    size++;
+} 
+
+
+
+
+

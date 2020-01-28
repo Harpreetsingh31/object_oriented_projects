@@ -1,0 +1,218 @@
+leton
+#include <iostream>
+#include<sstream>
+#include <string>
+using namespace std;
+
+#include "Dlist.h"
+
+Dlist::Dlist() : head(0) { }
+
+Dlist::~Dlist()
+{
+  Node* currNode = head;
+  Node* nextNode;
+
+  while (currNode != 0) {
+    nextNode = currNode->next;
+    delete currNode->next;
+    delete currNode;
+    currNode = nextNode;
+  }
+ }
+
+int Dlist::getSize() const{   
+  
+  Node* currNode= head;
+  int i=0;
+
+  while(currNode != 0){
+    i++;
+    currNode=currNode->next;
+   }
+   
+   return i;
+}
+
+Course* Dlist::getCourse(int index){
+
+  Node* currNode= head;
+  int i=0;
+
+  while(currNode != 0){
+    if (index==i)
+        return currNode->course;
+    i++;
+    currNode=currNode->next;
+   }
+}
+
+Course* Dlist::findCourse(string course){
+
+  Node* currNode = head;
+  Node* prevNode = 0;
+
+  while (currNode != 0) {
+   if(currNode->course->getName() == course)
+        return currNode->course;
+
+    prevNode=currNode;
+    currNode=currNode->next;    
+   }
+   if(currNode==0)
+	cout<<"Course not found"<<endl;
+}
+
+void Dlist::removeCourse(Course* course){
+
+  Node* currNode = head;
+  Node* prevNode = 0;
+
+   while (currNode != 0) {
+    if(currNode->course->getName() == course->getName())
+	break;
+      prevNode=currNode;
+      currNode=currNode->next;   
+   }
+   if(currNode==0)
+      return;
+     
+   if(prevNode==0){
+      head=currNode->next;
+   }else{
+      prevNode=currNode->next;
+      delete currNode;
+   }
+}
+//ADD course by 'ME'
+/*
+void Dlist::add(Course* course)
+{
+  Node* currNode = head;
+  Node* prevNode = 0;
+  Node* newCourseNode = new Node;
+  newCourseNode->course = course;
+  newCourseNode->next = 0;
+
+   if(currNode==0){
+     head = newCourseNode;
+     return;
+   }
+//Getting to the second last node
+   while (currNode != 0) {
+
+    if(currNode->course->getName() > prevNode->course->getName() &&
+       currNode->course->getName()<currNode->next->course->getName())
+     break;
+     prevNode = currNode;
+     currNode = currNode->next;
+    }
+    if(currNode->course->getCode()==course->getCode() || currNode->course->getName()==course->getName()){
+     cout << endl << "A Course with the same code already Exists - Not Added - Try Again" << endl;
+     return;
+    }
+  
+//Appending at the end of the list
+    if (prevNode == 0) {
+     head = newCourseNode;
+    } else {
+     prevNode->next = newCourseNode;
+    }
+     newCourseNode->next = currNode;
+    
+   size++;
+} 
+*/
+
+//ADD course by 'Partner'
+void Dlist::add(Course* course){
+  Node* currNode  = head;
+  Node* prevNode  = 0;
+  Node* newCourse = new Node;
+  newCourse->next = 0;
+  newCourse->prev = 0;
+  newCourse->course = course;
+  //Getting to the node in middle of greater and lower
+   if(currNode==0){
+      head = newCourse;
+      return;
+    } 
+   if((course->getCode() < currNode->course->getName()) && currNode->next==0){
+    //Creating new head
+      newCourse->next = currNode;
+      head = newCourse;
+      return;
+    }
+   if((course->getCode() > currNode->course->getName()) && currNode->next==0){
+    //Adding after head
+      currNode->next = newCourse;
+     return;       
+    }
+   while (currNode != 0){ //Adding to the middle list
+    if(currNode->course->getCode()==course->getCode()||currNode->course->getName()==course->getName()){
+        cout << endl << "A Course with the same code already Exists - Not Added - Try Again" << endl;
+        return;
+    }
+    if(prevNode==0){
+	newCourse->next=currNode;
+	head = newCourse;
+	size++;
+	return;
+     }
+      if(currNode==0){
+	prevNode->next = newCourse;
+	currNode->prev = newCourse;
+	newCourse->next= currNode;
+	newCourse->prev= prevNode;
+
+	size++;
+       }
+      }
+}
+
+string Dlist::fwdPrint(){
+
+   Node* currNode = head;
+   string ss;
+   stringstream myss;
+
+   while(currNode!=0) {
+      ss=ss+ "" +currNode->course->getCode();
+      ss=ss+", "+currNode->course->getName();
+      ss=ss+", "+currNode->course->getInstr();
+        myss << currNode->course->getEnrol();
+      ss=ss+", "+myss.str()+" ";
+
+      currNode=currNode->next;
+    }
+      return ss;
+}
+
+string Dlist::bwdPrint(){
+ 
+   Node* currNode = head;
+   Node* prevNode = 0;
+   string ss;
+   stringstream myss;
+
+   while(currNode!=0) {
+      prevNode=currNode;
+      currNode=currNode->next;
+   }
+      currNode=prevNode;  
+   while(currNode!=head){
+      ss=ss+ "" +currNode->course->getCode();
+      ss=ss+", "+currNode->course->getName();
+      ss=ss+", "+currNode->course->getInstr();
+ 	myss << currNode->course->getEnrol();
+      ss=ss+", "+myss.str();
+
+      currNode=currNode->prev;
+   }
+      return ss;
+}
+
+
+
+
+
