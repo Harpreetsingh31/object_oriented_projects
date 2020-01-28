@@ -1,0 +1,188 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <sstream>
+#include <cstdlib>
+#include "UImanager.h"
+
+using namespace std;
+
+void UImanager::mainMenu(int* choice)
+{
+  string str;
+
+  *choice = -1;
+
+  cout << endl << endl << "WELCOME TO THE BOOKSTORE MANAGEMENT SYSTEM" << endl<<endl;
+  cout << "  Course Management:" << endl;
+  cout << "  ( 1 )  Add course" << endl;
+  cout << "  ( 2 )  List all courses" << endl << endl;
+  cout << "  Textbook Management:" << endl;
+  cout << "  ( 3 )  Add textbook" << endl;
+  cout << "  ( 4 )  List course textbooks" << endl << endl;
+
+  cout << "  ( 0 )  Exit" << endl << endl;
+
+  while (*choice < 0 || *choice > 4) {
+    cout << "Enter your selection:  ";
+    *choice = getInt();
+  }
+}
+
+void UImanager::getCourseData(CourseArray* arr)
+{
+  string    str = "";
+  string    subj, num, name, inst;
+  int       enrol;
+  Course* newCourse;
+  cout << endl;
+
+  while (str.length() != 8) {
+    cout << "Enter course code (e.g. COMP2404):  ";
+    getline(cin, str);
+  }
+  subj = str.substr(0,4);
+  num  = str.substr(4);
+
+  cout << endl << "Enter course name (e.g. Introduction to SE):  ";
+  getline(cin, name);
+
+  cout << endl << "Enter instructor name:   ";
+  getline(cin, inst);
+
+  cout << endl << "Enter enrolment:   ";
+  getline(cin, str);
+  stringstream ss(str);
+  ss >> enrol;
+
+  newCourse = new Course(subj, num, name, inst, enrol);
+  
+  arr->add(newCourse);
+  cout << endl << arr->getSize();
+  //delete newCourse;
+}
+void UImanager::addText(CourseArray* arr){
+cout << endl << "Enter Course Code" << endl;
+      string str;
+      getline (cin, str);
+      if(str!=""){      
+	for(int i =0 ;i<arr->getSize();i++){
+      	if(str==arr->getCourse(i)->getCode()){ // if Course Found
+	Book* newBook;
+	string t="",a="",is="";int e=0;int y=0;
+	cout << endl << "Enter Book name ";
+  	getline(cin, t);
+	
+  	cout << endl << "Enter Author name:   ";
+ 	getline(cin, a);
+
+  	cout << endl << "Enter ISBN:   ";
+  	getline(cin, is);
+
+	cout << endl << "Enter edition:   ";
+  	getline(cin, str);
+	e=atoi(str.c_str());
+
+	cout << endl << "Enter year:   ";
+  	getline(cin, str);
+	y=atoi(str.c_str());	
+	
+	
+	newBook = new Book(t,a,is,e,y);
+	arr->getCourse(i)->addBook(newBook);
+	
+	delete newBook;
+      	}
+      	//else{cout << "Nope" << endl;}
+      	} //end of for
+     }//end of if
+	else{cout << "Course does not exist" << endl;}
+}
+
+void UImanager::printCourses(CourseArray *arr)
+{
+  Course* c;// = new Course("","","","",0);
+  cout << endl << endl << "ALL COURSES:" << endl << endl;
+  if (arr->getSize() == 0) {
+      cout << "None" << endl;
+  }
+  else{
+  	for (int i=0; i<arr->getSize(); i++) {
+
+    	c = arr->getCourse(i);
+	
+    	cout << "Course:     " << c->getCode()  << "  " << c->getName() << endl;
+    	cout << "Instructor: " << c->getInstr()  << endl;
+    	cout << "Enrolment:  " << c->getEnrol() << endl;
+    	cout << "Textbooks:  ";
+    	for(int j=0;j<c->getNumBooks();j++)
+		{cout << c->getBooks().getBook(j)->getTitle() << endl;}
+    	cout << endl;
+  	}
+  }
+  //delete c;
+}
+
+void UImanager::listText(CourseArray *arr)
+{
+  Book* c;// = new Course("","","","",0);
+
+  if (arr->getSize() == 0) {
+      cout << "None" << endl;
+  } else{
+    	cout << "  Enter Course Code" << endl;
+      	string str;
+      	getline (cin, str);
+	
+  	for(int i = 0; i < arr->getSize(); i++){
+		cout << i << endl;
+	}
+   }
+    	
+
+	/*Book b;      
+	cout << "  Enter Course Code" << endl;
+      	string str;
+      	getline (cin, str);
+	//int numbooks=-1;
+	if (arr->getSize() == 0) {
+      		cout << "No Courses" << endl;
+  	}      
+	 else{	
+		for(int i =0 ;i<arr->getSize();i++){
+      		if(str==arr->getCourse(i)->getCode())//if course exists
+		{ 		
+	  		int numbooks = arr->getCourse(i)->getNumBooks();	//get numbooks			
+			for(int j = 0; j<arr->getCourse(i)->getNumBooks(); j++)
+			{ 			//for numbooks
+			cout << endl << "Title\tAuthor\tISBN\tEdition\tYear" << endl;			
+			b = *arr->getCourse(i)->getBooks().getBook(j);	//get book
+			cout << endl << b.getTitle() << "\t" << b.getAuthors() << "\t" << b.getISBN() << "\t" << b.getEdition() << "\t" << b.getYear();
+	  		}
+		}
+		else{cout << endl << "Course does not exist" << endl;}
+	}//end of for
+      	}//end of else {}
+	//delete b;*/
+}
+
+void UImanager::pause()
+{
+  string str;
+
+  cout << endl << "\nPress enter to continue...";
+  getline(cin, str);
+}
+
+int UImanager::getInt()
+{
+  string str;
+  int    num;
+
+  getline(cin, str);
+  stringstream ss(str);
+  ss >> num;
+
+  return num;
+}
+
