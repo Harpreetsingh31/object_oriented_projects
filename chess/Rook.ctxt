@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=isWhite\ initialRow\ initialColumn
+comment0.target=Rook(boolean,\ int,\ int)
+comment0.text=\ \r\n\ Constructs\ a\ Rook\ with\ the\ specified\ colour\ and\ initial\ position.\r\n\ \r\n\ @param\ isWhite\ true\ if\ the\ piece\ is\ white,\ false\ if\ the\ piece\ is\ black\r\n\ @param\ initialRow\ the\ row\ of\ the\ square\ where\ the\ piece\ is\ initially\ placed\r\n\ @param\ initialColumn\ the\ column\ of\ the\ square\ where\ the\ piece\ is\ initially\ placed\r\n
+comment1.params=desiredRow\ desiredColumn
+comment1.target=boolean\ canMoveTo(int,\ int)
+comment1.text=\r\n\ Returns\ true\ is\ this\ piece\ can\ legally\ move\ to\ the\ specified\ location\r\n\ on\ the\ chess\ board.\r\n\ Returns\ false\ if\ the\ specified\ row\ or\ column\ is\ not\ on\ a\ chess\ board,\r\n\ or\ if\ moving\ to\ the\ specified\ location\ is\ not\ a\ legal\ move\ for\ a\ rook.\r\n\ \r\n\ This\ method\ does\ not\ move\ the\ piece\!\r\n\ \r\n\ @param\ desiredRow\ the\ row\ where\ we\ want\ to\ move\ this\ piece.\r\n\ @param\ desiredColumn\ the\ column\ where\ we\ want\ to\ move\ this\ piece.\r\n
+numComments=2

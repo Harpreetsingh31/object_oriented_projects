@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.params=isWhite\ initialRow\ initialColumn
+comment0.target=ChessPiece(boolean,\ int,\ int)
+comment0.text=\ Initializes\ those\ fields\ of\ a\ chess\ piece\ that\ are\ common\ to\ all\ pieces.\r\n\r\n\ @param\ isWhite\ true\ if\ the\ piece\ is\ white,\ false\ if\ the\ piece\ is\ black\r\n\ @param\ initialRow\ the\ row\ of\ the\ square\ where\ the\ piece\ is\ initially\ placed\r\n\ @param\ initialColumn\ the\ column\ of\ the\ square\ where\ the\ piece\ is\ initially\ placed\r\n
+comment1.params=
+comment1.target=boolean\ isWhite()
+comment1.text=\r\n\ Returns\ true\ if\ this\ piece\ is\ white,\ otherwise\ returns\ false.\r\n
+comment2.params=
+comment2.target=java.lang.String\ toString()
+comment2.text=\r\n\ Returns\ a\ string\ representation\ of\ this\ piece;\ for\ example,\r\n\ "White\ Rook,\ row\ \=\ 3,\ column\ \=\ 7"\ or\r\n\ "Black\ Bishop,\ row\ \=\ 5,\ column\ \=\ 2"\r\n
+comment3.params=
+comment3.target=int\ getRow()
+comment3.text=\r\n\ Returns\ the\ row\ of\ this\ piece's\ position.\r\n
+comment4.params=
+comment4.target=int\ getColumn()
+comment4.text=\r\n\ Returns\ the\ column\ of\ this\ piece's\ position.\r\n
+comment5.params=desiredRow\ desiredColumn
+comment5.target=void\ moveTo(int,\ int)
+comment5.text=\r\n\ Moves\ this\ piece\ to\ the\ specified\ location\ on\ the\ chess\ board\ if\ it\ can\r\n\ legally\ do\ so.\ Otherwise,\ the\ location\ of\ this\ piece\ is\ not\ changed.\r\n\ \r\n\ @param\ desiredRow\ the\ row\ where\ we\ want\ to\ move\ this\ piece.\r\n\ @param\ desiredColumn\ the\ column\ where\ we\ want\ to\ move\ this\ piece.\ \r\n
+comment6.params=desiredRow\ desiredColumn
+comment6.target=boolean\ canMoveTo(int,\ int)
+comment6.text=\r\n\ Returns\ true\ is\ this\ piece\ can\ legally\ move\ to\ the\ specified\ location\r\n\ on\ the\ chess\ board,\ otherwise\ returns\ false.\r\n\ \r\n\ This\ method\ does\ not\ move\ the\ piece\!\r\n\ \r\n\ @param\ desiredRow\ the\ row\ where\ we\ want\ to\ move\ this\ piece.\r\n\ @param\ desiredColumn\ the\ column\ where\ we\ want\ to\ move\ this\ piece.\r\n
+numComments=7
