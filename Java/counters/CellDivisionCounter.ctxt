@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=CellDivisionCounter()
+comment0.text=\r\n\ Constructs\ a\ new\ CellDivisionCounter\ whose\ current\ count\ \r\n\ and\ minimum\ count\ are\ initialized\ to\ MIN_COUNT,\ and\ whose\r\n\ maximum\ count\ is\ initialized\ to\ MAX_COUNT.\r\n
+comment1.params=
+comment1.target=void\ countUp()
+comment1.text=\r\n\ Double\ this\ counter's\ current\ value.\ If\ doubling\ the\ count\r\n\ would\ cause\ this\ counter\ to\ exceed\ its\ maximum\ value,\ the\ \r\n\ state\ of\ the\ counter\ is\ not\ changed;\ i.e.,\ the\ current\ count\r\n\ is\ not\ increased.\r\n
+numComments=2

@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=
+comment0.target=LimitedCounter()
+comment0.text=\r\n\ Constructs\ a\ new\ LimitedCounter\ whose\ current\ count\ is\ initialized\ to\ \r\n\ Counter.DEFAULT_MINIMUM,\ and\ which\ counts\ between\ Counter.DEFAULT_MINIMUM\ \r\n\ and\ Counter.DEFAULT_MAXIMUM,\ inclusive.\r\n
+comment1.params=minCount\ maxCount
+comment1.target=LimitedCounter(int,\ int)
+comment1.text=\r\n\ Constructs\ a\ new\ LimitedCounter\ whose\ current\ count\ is\ initialized\ to\ \r\n\ minCount,\ and\ which\ counts\ between\ minCount\ and\ maxCount,\ inclusive.\r\n
+comment2.params=
+comment2.target=void\ countUp()
+comment2.text=\r\n\ Increments\ this\ counter\ by\ 1.\r\n\ If\ we've\ reached\ the\ maximum\ count,\ calling\ this\ method\ doesn't\ change\ the\ \r\n\ state\ of\ the\ counter.\r\n
+numComments=3
