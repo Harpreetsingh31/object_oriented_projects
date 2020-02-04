@@ -1,2 +1,2 @@
 OOPs projects
-![Image](UML.jpg)
+![Image](UML.JPG)
