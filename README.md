@@ -1,2 +1,2 @@
-C++ Bookstore Management UML diagram
+# C++ Bookstore Management UML diagram
 ![Image](UML.JPG)
